@@ -1,0 +1,60 @@
+@use "../../components/assets/scss" as *;
+.cover_form {
+  width: 100%;
+  background-color: $silkWhite;
+  padding: 99px 0;
+  .cardBody {
+    width: 80%;
+    max-width: 518px;
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px 50px;
+    // @include mq(968px) {
+    //   width: 50%;
+    // }
+    // @include mq(568px) {
+    //   width: 80%;
+    // }
+    form {
+      width: 100%;
+      .title {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 30px;
+        color: $boltGreen;
+        margin-bottom: 26px;
+      }
+      .error_text {
+        color: red;
+        font-size: 12px;
+      }
+      .form_group {
+        width: 100%;
+        display: flex;
+        margin-top: 5px;
+        margin-bottom: 26px;
+        flex-direction: column;
+        label {
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 22px;
+          margin-bottom: 9px;
+
+          color: $darkGrey;
+        }
+        input {
+          background: rgba(216, 216, 216, 0.9);
+
+          border-radius: 10px;
+          border: none;
+          color: black;
+          padding: 15px;
+          &::placeholder {
+            color: black;
+          }
+        }
+      }
+    }
+  }
+}
