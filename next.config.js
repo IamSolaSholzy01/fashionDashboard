@@ -4,7 +4,8 @@ const nextConfig = {
   swcMinify: true,
   publicRuntimeConfig: {
     // apiUrl: "https://lit-cliffs-84601.herokuapp.com/api/v1"
-    apiUrl: "http://localhost:3000/api/v1",
+    // apiUrl: "http://localhost:3000/api/v1",
+    apiUrl: "https://fashion-api-two.vercel.app/api/v1",
   },
 };
 

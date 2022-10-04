@@ -17,6 +17,7 @@ import {
   InputRightElement,
   Text,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
@@ -47,11 +48,13 @@ function LoginForm() {
     email: string;
     password: string;
   }) => {
+    setError("");
     setIsLoading(true);
     return userService
       .login(email, password)
       .then(() => {
         setIsLoading(false);
+        setError("");
         dispatch({ type: "login" });
         // get return url from query parameters or default to '/'
         const returnUrl = Array.isArray(router.query.returnUrl)
@@ -62,8 +65,8 @@ function LoginForm() {
       })
       .catch((error) => {
         setIsLoading(false);
-        setError(error);
-        console.error("apiError", { message: error });
+        setError(error.message || error);
+        console.error("apiError", { message: error.message || error });
       });
   };
 
@@ -84,6 +87,20 @@ function LoginForm() {
   );
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+  const toast = useToast();
+
+  useEffect(() => {
+    console.log(error);
+    if (error)
+      toast({
+        position: "bottom",
+        title: "Login Error",
+        description: error!,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+  }, [error]);
 
   return (
     <Flex
@@ -118,7 +135,7 @@ function LoginForm() {
         direction="column"
         w={{ base: "100%", md: "420px" }}
         maxW="100%"
-        background="transparent"
+        background={"transparent"}
         borderRadius="15px"
         mx={{ base: "auto", lg: "unset" }}
         me="auto"
